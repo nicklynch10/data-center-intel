@@ -1,25 +1,19 @@
 version: 1
-applications:
-  - frontend:
-      phases:
-        preBuild:
-          commands:
-            - echo "Starting build in $(pwd)"
-            - cd apps/web
-            - echo "Changed to $(pwd)"
-            - ls -la
-            - cp package-standalone.json package.json
-            - npm install
-        build:
-          commands:
-            - echo "Building in $(pwd)"
-            - npm run build
-            - echo "Build complete, contents of current dir:"
-            - ls -la
-      artifacts:
-        baseDirectory: apps/web/.next
-        files:
-          - '**/*'
-      cache:
-        paths:
-          - apps/web/node_modules/**/*
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm install -g pnpm
+        - cd apps/web
+        - cp package-standalone.json package.json
+        - npm install --legacy-peer-deps
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    baseDirectory: apps/web/.next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - apps/web/node_modules/**/*
