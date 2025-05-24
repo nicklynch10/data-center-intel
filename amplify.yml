@@ -1,27 +1,25 @@
 version: 1
-frontend:
-  phases:
-    preBuild:
-      commands:
-        - node --version
-        - npm --version
-        - npm install -g pnpm@8.15.1
-        - pnpm --version
-        - ls -la
-        - pnpm install --no-frozen-lockfile
-    build:
-      commands:
-        - cd apps/web
-        - pwd
-        - ls -la
-        - pnpm run build || echo "Build failed, checking environment"
-        - ls -la .next || echo "No .next directory found"
-  artifacts:
-    baseDirectory: apps/web/.next
-    files:
-      - '**/*'
-  cache:
-    paths:
-      - node_modules/**/*
-      - apps/*/node_modules/**/*
-      - packages/*/node_modules/**/*
+applications:
+  - frontend:
+      phases:
+        preBuild:
+          commands:
+            - echo "Starting build in $(pwd)"
+            - cd apps/web
+            - echo "Changed to $(pwd)"
+            - ls -la
+            - cp package-standalone.json package.json
+            - npm install
+        build:
+          commands:
+            - echo "Building in $(pwd)"
+            - npm run build
+            - echo "Build complete, contents of current dir:"
+            - ls -la
+      artifacts:
+        baseDirectory: apps/web/.next
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - apps/web/node_modules/**/*
