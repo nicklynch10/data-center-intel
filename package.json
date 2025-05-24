@@ -1,0 +1,28 @@
+{
+  "name": "data-center-intel",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Data Center Intel - Track U.S. data center developments",
+  "scripts": {
+    "dev": "pnpm -r --parallel run dev",
+    "build": "pnpm -r run build",
+    "test": "pnpm -r run test",
+    "test:e2e": "pnpm -F tests run test:e2e",
+    "lint": "pnpm -r run lint",
+    "typecheck": "pnpm -r run typecheck",
+    "db:push": "pnpm -F db run push",
+    "db:generate": "pnpm -F db run generate",
+    "db:migrate": "pnpm -F db run migrate"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "dotenv": "^16.4.1",
+    "dotenv-cli": "^7.3.0",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.15.1"
+}

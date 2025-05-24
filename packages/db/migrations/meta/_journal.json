@@ -1,0 +1,13 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1748108235515,
+      "tag": "0000_talented_inhumans",
+      "breakpoints": true
+    }
+  ]
+}
