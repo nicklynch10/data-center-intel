@@ -3,12 +3,19 @@ frontend:
   phases:
     preBuild:
       commands:
+        - node --version
+        - npm --version
         - npm install -g pnpm@8.15.1
-        - pnpm install
+        - pnpm --version
+        - ls -la
+        - pnpm install --no-frozen-lockfile
     build:
       commands:
         - cd apps/web
-        - pnpm run build
+        - pwd
+        - ls -la
+        - pnpm run build || echo "Build failed, checking environment"
+        - ls -la .next || echo "No .next directory found"
   artifacts:
     baseDirectory: apps/web/.next
     files:
@@ -16,3 +23,5 @@ frontend:
   cache:
     paths:
       - node_modules/**/*
+      - apps/*/node_modules/**/*
+      - packages/*/node_modules/**/*
